@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthcarePortal.Models.Attribute;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace HealthcarePortal.Models.ViewModel
         [Required(ErrorMessage = "Email id is required")]
         [EmailAddress(ErrorMessage = "Enter valid e-mail address")]
         [MaxLength(100)]
+        [UniqueEmail(ErrorMessage = "Email id already taken")]
         [Display(Name = "Email Id")]
         public string Email { get; set; }
 

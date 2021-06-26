@@ -27,7 +27,7 @@ namespace HealthcarePortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
         {
-            if (!ModelState.IsValid) return View("Error");
+            if (!ModelState.IsValid) return View(viewModel);
 
             var user = new User
             {

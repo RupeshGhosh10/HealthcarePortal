@@ -159,6 +159,7 @@
       <DependentUpon>202106251730011_PlansTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Attribute\UniqueEmailAttribute.cs" />
     <Compile Include="Models\Data\HealthcarePortalContext.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\Proposal.cs" />
