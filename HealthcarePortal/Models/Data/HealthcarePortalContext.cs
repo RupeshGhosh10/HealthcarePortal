@@ -15,5 +15,6 @@ namespace HealthcarePortal.Models.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Plan> Plans { get; set; }
+        public DbSet<Proposal> Proposals { get; set; }
     }
 }

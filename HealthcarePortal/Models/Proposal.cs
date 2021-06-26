@@ -18,7 +18,7 @@ namespace HealthcarePortal.Models
         public string CompanyName { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(250)]
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Zip code is required")]
@@ -26,13 +26,6 @@ namespace HealthcarePortal.Models
         [RegularExpression(@"^[1-9][0-9]{5}$", ErrorMessage = "Enter valid zip code")]
         [Display(Name = "Zip Code")]
         public string ZipCode { get; set; }
-
-        [ForeignKey("AdminUser")]
-        public int AdminUserId { get; set; }
-
-        [Required(ErrorMessage = "Select a admin user")]
-        [Display(Name = "Admin User")]
-        public User AdminUser { get; set; }
 
         [Required(ErrorMessage = "Proposal effective date is required")]
         [DataType(DataType.Date)]
@@ -43,5 +36,12 @@ namespace HealthcarePortal.Models
         [Range(1, int.MaxValue, ErrorMessage = "Number of employee must be greater than zero")]
         [Display(Name = "Number of Employee")]
         public int NumberOfEmployee { get; set; }
+
+        [ForeignKey("AdminUser")]
+        public int AdminUserId { get; set; }
+
+        [Required(ErrorMessage = "Select a admin user")]
+        [Display(Name = "Admin User")]
+        public User AdminUser { get; set; }
     }
 }
