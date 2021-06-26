@@ -1,0 +1,67 @@
+﻿@model HealthcarePortal.Models.Proposal
+
+@{
+    ViewBag.Title = "Create New Proposal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create New Proposal</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProposalEffectiveDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.ProposalEffectiveDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProposalEffectiveDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumberOfEmployee, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NumberOfEmployee, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NumberOfEmployee, "", new { @class = "text-danger" })
+            </div>
+        </div>
+@*        <div class="form-group">
+            @Html.LabelFor(model => model.AdminUserId, "AdminUserId", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("AdminUserId", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AdminUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

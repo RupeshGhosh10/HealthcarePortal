@@ -7,13 +7,13 @@ namespace HealthcarePortal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ProposalTable : IMigrationMetadata
+    public sealed partial class UserRoleTableColumnRename : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ProposalTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UserRoleTableColumnRename));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106261615599_ProposalTable"; }
+            get { return "202106261702007_UserRoleTableColumnRename"; }
         }
         
         string IMigrationMetadata.Source

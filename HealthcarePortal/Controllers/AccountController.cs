@@ -58,7 +58,7 @@ namespace HealthcarePortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel viewModel, string returnUrl)
         {
-            if (!ModelState.IsValid) return View("Error");
+            if (!ModelState.IsValid) return View(viewModel);
 
             var user = _db.Users.FirstOrDefault(x => x.Email == viewModel.Email);
             if (user == null) ModelState.AddModelError("", "Incorrect Email id or Password");
@@ -106,7 +106,7 @@ namespace HealthcarePortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(UpdateViewModel viewModel)
         {
-            if (!ModelState.IsValid) return View("Error");
+            if (!ModelState.IsValid) return View(viewModel);
 
             var user = _db.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
 

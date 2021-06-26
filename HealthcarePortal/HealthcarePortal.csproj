@@ -143,6 +143,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanController.cs" />
+    <Compile Include="Controllers\ProposalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -158,9 +159,13 @@
     <Compile Include="Migrations\202106251730011_PlansTable.Designer.cs">
       <DependentUpon>202106251730011_PlansTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106261615599_ProposalTable.cs" />
-    <Compile Include="Migrations\202106261615599_ProposalTable.Designer.cs">
-      <DependentUpon>202106261615599_ProposalTable.cs</DependentUpon>
+    <Compile Include="Migrations\202106261702007_UserRoleTableColumnRename.cs" />
+    <Compile Include="Migrations\202106261702007_UserRoleTableColumnRename.Designer.cs">
+      <DependentUpon>202106261702007_UserRoleTableColumnRename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106261703294_ProposalTable.cs" />
+    <Compile Include="Migrations\202106261703294_ProposalTable.Designer.cs">
+      <DependentUpon>202106261703294_ProposalTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attribute\UniqueEmailAttribute.cs" />
@@ -223,6 +228,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Update.cshtml" />
     <Content Include="Views\Account\UserList.cshtml" />
+    <Content Include="Views\Proposal\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -250,8 +256,11 @@
     <EmbeddedResource Include="Migrations\202106251730011_PlansTable.resx">
       <DependentUpon>202106251730011_PlansTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106261615599_ProposalTable.resx">
-      <DependentUpon>202106261615599_ProposalTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106261702007_UserRoleTableColumnRename.resx">
+      <DependentUpon>202106261702007_UserRoleTableColumnRename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106261703294_ProposalTable.resx">
+      <DependentUpon>202106261703294_ProposalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
