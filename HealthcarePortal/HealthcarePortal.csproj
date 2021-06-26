@@ -176,6 +176,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRoleProvider.cs" />
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\ProposalViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
     <Compile Include="Models\ViewModel\UpdateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

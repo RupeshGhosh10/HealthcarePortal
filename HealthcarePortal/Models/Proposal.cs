@@ -29,7 +29,7 @@ namespace HealthcarePortal.Models
 
         [Required(ErrorMessage = "Proposal effective date is required")]
         [DataType(DataType.Date)]
-        [Display(Name = "Proposal Effective Date")]
+        [Display(Name = "Effective Date")]
         public DateTime ProposalEffectiveDate { get; set; }
 
         [Required(ErrorMessage = "Number of employee is required")]
@@ -37,6 +37,7 @@ namespace HealthcarePortal.Models
         [Display(Name = "Number of Employee")]
         public int NumberOfEmployee { get; set; }
 
+        [Required(ErrorMessage = "Select a admin user")]
         [ForeignKey("AdminUser")]
         public int AdminUserId { get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model HealthcarePortal.Models.Proposal
+﻿@model HealthcarePortal.Models.ViewModel.ProposalViewModel
 
 @{
     ViewBag.Title = "Create New Proposal";
@@ -13,50 +13,50 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Proposal.CompanyName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Proposal.CompanyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Proposal.CompanyName, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Proposal.Address, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.Proposal.Address, new { @class = "form-control", @row = 2 })
+                @Html.ValidationMessageFor(model => model.Proposal.Address, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Proposal.ZipCode, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Proposal.ZipCode, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Proposal.ZipCode, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ProposalEffectiveDate, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Proposal.ProposalEffectiveDate, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ProposalEffectiveDate, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProposalEffectiveDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Proposal.ProposalEffectiveDate, new { @class = "form-control", @type = "date", @id = "input-date" })
+                @Html.ValidationMessageFor(model => model.Proposal.ProposalEffectiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.NumberOfEmployee, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Proposal.NumberOfEmployee, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.NumberOfEmployee, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.NumberOfEmployee, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Proposal.NumberOfEmployee, new { @class = "form-control", @type = "number" })
+                @Html.ValidationMessageFor(model => model.Proposal.NumberOfEmployee, "", new { @class = "text-danger" })
             </div>
         </div>
-@*        <div class="form-group">
-            @Html.LabelFor(model => model.AdminUserId, "AdminUserId", new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Proposal.AdminUser, "Admin User", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("AdminUserId", null, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AdminUserId, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Proposal.AdminUserId, new SelectList(Model.AdminUser, "Id", "Email"), "select admin user", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Proposal.AdminUserId, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Next" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -64,4 +64,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + '-' + month + '-' + day;
+            $('#input-date').attr('min', today);
+        });
+    </script>
 }
