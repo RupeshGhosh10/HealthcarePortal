@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1 class="text-center">Healthcare Portal App</h1>
+    <hr />
+    <div class="row text-justify main-link-container">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="col-md-6">
+                <h3>@Html.ActionLink("Update Profile", "Update", "Account")</h3>
+            </div>
+            if (Roles.IsUserInRole("Admin"))
+            {
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("Add Sale Users", "Register", "Account")</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("Sale Users List", "UserList", "Account")</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("Add New Plan", "Create", "Plan")</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("See Plans", "Index", "Plan")</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("See Proposals", "", "")</h3>
+                </div>
+            }
+            else if (Roles.IsUserInRole("Sales"))
+            {
+                <dv class="col-md-6">
+                    <h3>@Html.ActionLink("Create Proposal", "", "")</h3>
+                </dv>
+            }
+        }
+        else
+        {
+            <h3>Please login to continue</h3>
+        }
+    </div>
+</div>
