@@ -41,7 +41,6 @@ namespace HealthcarePortal.Models
         [ForeignKey("AdminUser")]
         public int AdminUserId { get; set; }
 
-        [Required(ErrorMessage = "Select a admin user")]
         [Display(Name = "Admin User")]
         public User AdminUser { get; set; }
     }
