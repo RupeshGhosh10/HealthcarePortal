@@ -52,6 +52,11 @@ textarea {
     margin: auto
 }
 
+.employee-table {
+    width: 65%;
+    margin: auto;
+}
+
 .modal-box {
     position: fixed;
     top: 25%;

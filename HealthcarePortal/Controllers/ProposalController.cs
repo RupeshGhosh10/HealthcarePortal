@@ -25,5 +25,15 @@ namespace HealthcarePortal.Controllers
 
             return View(viewModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddEmployee(ProposalViewModel viewModel)
+        {
+            int noOfEmployee = viewModel.Proposal.NumberOfEmployee;
+            viewModel.Employees = new List<Employee>(new Employee[noOfEmployee]);
+
+            return View(viewModel);
+        }
     }
 }
