@@ -16,6 +16,7 @@ namespace HealthcarePortal.Models.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<Plan> Plans { get; set; }
         public DbSet<Proposal> Proposals { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,6 +29,12 @@ namespace HealthcarePortal.Models.Data
                             x.MapRightKey("RoleId");
                             x.ToTable("UserRoles");
                         });
+
+            modelBuilder.Entity<Proposal>()
+                        .HasMany(e => e.Employees)
+                        .WithRequired()
+                        .Map(m => m.MapKey("ProposalId"));
+
         }
     }
 }

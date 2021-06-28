@@ -157,9 +157,14 @@
     <Compile Include="Migrations\202106261703294_ProposalTable.Designer.cs">
       <DependentUpon>202106261703294_ProposalTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106281426237_EmployeeTable.cs" />
+    <Compile Include="Migrations\202106281426237_EmployeeTable.Designer.cs">
+      <DependentUpon>202106281426237_EmployeeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attribute\UniqueEmailAttribute.cs" />
     <Compile Include="Models\Data\HealthcarePortalContext.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\Proposal.cs" />
     <Compile Include="Models\Role.cs" />
@@ -252,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106261703294_ProposalTable.resx">
       <DependentUpon>202106261703294_ProposalTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106281426237_EmployeeTable.resx">
+      <DependentUpon>202106281426237_EmployeeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

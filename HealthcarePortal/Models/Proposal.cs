@@ -43,5 +43,7 @@ namespace HealthcarePortal.Models
 
         [Display(Name = "Admin User")]
         public User AdminUser { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
     }
 }
