@@ -16,13 +16,13 @@ namespace HealthcarePortal.Controllers
     {
         private readonly HealthcarePortalContext _db = new HealthcarePortalContext();
 
-        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
+            if (User.Identity.IsAuthenticated) return View("Unauthorized");
+
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel viewModel)
@@ -41,9 +41,16 @@ namespace HealthcarePortal.Controllers
             _db.Users.Add(user);
             _db.SaveChanges();
 
-            Roles.AddUserToRole(user.Email, "Sales");
+            if (viewModel.IsAdmin)
+            {
+                Roles.AddUserToRole(user.Email, "Admin");
+            }
+            else
+            {
+                Roles.AddUserToRole(user.Email, "Sales");
+            }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         public ActionResult Login(string returnUrl)

@@ -38,6 +38,9 @@ namespace HealthcarePortal.Models.ViewModel
         [MaxLength(250)]
         public string Address { get; set; }
 
+        [Display(Name = "Is Admin?")]
+        public bool IsAdmin { get; set; }
+
         [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be 8 characters long")]

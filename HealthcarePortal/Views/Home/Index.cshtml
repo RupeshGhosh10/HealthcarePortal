@@ -14,9 +14,6 @@
             if (Roles.IsUserInRole("Admin"))
             {
                 <div class="col-md-6">
-                    <h3>@Html.ActionLink("Add Sale Users", "Register", "Account")</h3>
-                </div>
-                <div class="col-md-6">
                     <h3>@Html.ActionLink("Sale Users List", "UserList", "Account")</h3>
                 </div>
                 <div class="col-md-6">
@@ -29,11 +26,14 @@
                     <h3>@Html.ActionLink("See Proposals", "", "")</h3>
                 </div>
             }
-            else 
+            else
             {
-                <dv class="col-md-6">
+                <div class="col-md-6">
                     <h3>@Html.ActionLink("Create Proposal", "Create", "Proposal")</h3>
-                </dv>
+                </div>
+                <div class="col-md-6">
+                    <h3>@Html.ActionLink("See Proposals", "", "")</h3>
+                </div>
             }
         }
         else
