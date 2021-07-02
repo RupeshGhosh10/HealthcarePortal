@@ -57,7 +57,20 @@ textarea {
     margin: auto;
 }
 
+.proposal-table {
+    width: 85%;
+    margin: auto;
+}
+
 .modal-box {
     position: fixed;
-    top: 25%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.employee-modal {
+    top: 55%;
+    height: 100%;
+    width: 100%;
 }

@@ -61,6 +61,7 @@ namespace HealthcarePortal.Controllers
             
             proposal.PlanId = viewModel.PlanId;
             proposal.Employees = employees as ICollection<Employee>;
+            proposal.IsApproved = false;
 
             _db.Proposals.Add(proposal);
             foreach (var employee in proposal.Employees)
@@ -70,6 +71,21 @@ namespace HealthcarePortal.Controllers
             _db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ShowProposals()
+        {
+            var proposalList = _db.Proposals.Include(x => x.AdminUser).Include(x => x.Plan).ToList();
+
+            return View(proposalList);
+        }
+
+        public ActionResult EmployeeList(int id)
+        {
+            var proposal = _db.Proposals.Include(x => x.Employees).FirstOrDefault(x => x.Id == id);
+            if (proposal == null) return View("Error");
+
+            return PartialView("_EmployeeList", proposal.Employees);
         }
     }
 }

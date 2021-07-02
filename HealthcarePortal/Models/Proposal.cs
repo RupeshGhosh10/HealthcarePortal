@@ -37,6 +37,9 @@ namespace HealthcarePortal.Models
         [Display(Name = "Number of Employee")]
         public int NumberOfEmployee { get; set; }
 
+        [Display(Name = "Is Approved?")]
+        public bool IsApproved { get; set; }
+
         [Required(ErrorMessage = "Select a admin user")]
         [ForeignKey("AdminUser")]
         public int AdminUserId { get; set; }
