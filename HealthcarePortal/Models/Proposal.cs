@@ -44,6 +44,12 @@ namespace HealthcarePortal.Models
         [Display(Name = "Admin User")]
         public User AdminUser { get; set; }
 
+        [Required(ErrorMessage = "Select a plan")]
+        [ForeignKey("Plan")]
+        public int PlanId { get; set; }
+
+        public Plan Plan { get; set; }
+
         public ICollection<Employee> Employees { get; set; }
     }
 }

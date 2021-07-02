@@ -68,7 +68,11 @@ namespace HealthcarePortal.Controllers
             if (!ModelState.IsValid) return View(viewModel);
 
             var user = _db.Users.FirstOrDefault(x => x.Email == viewModel.Email);
-            if (user == null) ModelState.AddModelError("", "Incorrect Email id or Password");
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Incorrect Email id or Password");
+                return View(viewModel);
+            }
 
             if (user.Password == viewModel.Password)
             {

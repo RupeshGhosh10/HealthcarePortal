@@ -161,6 +161,10 @@
     <Compile Include="Migrations\202106281426237_EmployeeTable.Designer.cs">
       <DependentUpon>202106281426237_EmployeeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107021021351_AddPlanToProposalTable.cs" />
+    <Compile Include="Migrations\202107021021351_AddPlanToProposalTable.Designer.cs">
+      <DependentUpon>202107021021351_AddPlanToProposalTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attribute\UniqueEmailAttribute.cs" />
     <Compile Include="Models\Data\HealthcarePortalContext.cs" />
@@ -173,6 +177,7 @@
     <Compile Include="Models\ViewModel\LoginViewModel.cs" />
     <Compile Include="Models\ViewModel\ProposalViewModel.cs" />
     <Compile Include="Models\ViewModel\RegisterViewModel.cs" />
+    <Compile Include="Models\ViewModel\SelectPlanViewModel.cs" />
     <Compile Include="Models\ViewModel\UpdateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +231,7 @@
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Proposal\Create.cshtml" />
     <Content Include="Views\Proposal\AddEmployee.cshtml" />
+    <Content Include="Views\Proposal\SelectPlan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106281426237_EmployeeTable.resx">
       <DependentUpon>202106281426237_EmployeeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107021021351_AddPlanToProposalTable.resx">
+      <DependentUpon>202107021021351_AddPlanToProposalTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

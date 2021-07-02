@@ -10,7 +10,5 @@ namespace HealthcarePortal.Models.ViewModel
         public Proposal Proposal { get; set; }
 
         public IEnumerable<User> AdminUser { get; set; }
-
-        public IEnumerable<Employee> Employees { get; set; }
     }
 }

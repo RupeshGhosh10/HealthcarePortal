@@ -31,9 +31,45 @@ namespace HealthcarePortal.Controllers
         public ActionResult AddEmployee(ProposalViewModel viewModel)
         {
             int noOfEmployee = viewModel.Proposal.NumberOfEmployee;
-            viewModel.Employees = new List<Employee>(new Employee[noOfEmployee]);
+            TempData["Proposal"] = viewModel.Proposal;
+            var employees = new List<Employee>(Enumerable.Repeat(new Employee(), noOfEmployee));
+
+            return View(employees);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SelectPlan(IEnumerable<Employee> employees)
+        {
+            TempData["Employees"] = employees;
+
+            var viewModel = new SelectPlanViewModel
+            {
+                Plans = _db.Plans.ToList()
+            };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveProposal(SelectPlanViewModel viewModel)
+        {
+            var proposal = TempData["Proposal"] as Proposal;
+            var employees = TempData["Employees"] as IEnumerable<Employee>;
+            int planId = viewModel.Plan.Id;
+
+            proposal.PlanId = planId;
+            proposal.Employees = employees as ICollection<Employee>;
+
+            _db.Proposals.Add(proposal);
+            foreach (var employee in proposal.Employees)
+            {
+                _db.Employees.Add(employee);
+            }
+            _db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

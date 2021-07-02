@@ -1,22 +1,16 @@
-﻿@model HealthcarePortal.Models.ViewModel.ProposalViewModel
+﻿@model List<HealthcarePortal.Models.Employee>
 
 @{
-    ViewBag.Title = "Add Employee";
+    ViewBag.Title = "Add Employee Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     int count = 1;
 }
 
-<h2>Add Employee</h2>
+<h2>Add Employee Details</h2>
 <hr />
-@using (Html.BeginForm())
+@using (Html.BeginForm("SelectPlan", "Proposal", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Proposal.CompanyName)
-    @Html.HiddenFor(model => model.Proposal.Address)
-    @Html.HiddenFor(model => model.Proposal.ZipCode)
-    @Html.HiddenFor(model => model.Proposal.ProposalEffectiveDate)
-    @Html.HiddenFor(model => model.Proposal.NumberOfEmployee)
-    @Html.HiddenFor(model => model.Proposal.AdminUserId)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <table class="table table-hover table-striped employee-table">
         <thead>
@@ -29,14 +23,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var modelItem in Model.Employees)
+            @for (int i = 0; i < Model.Count(); i++)
             {
                 <tr>
-                    <td>@(count++)</td>
-                    <td>@Html.TextBoxFor(item => modelItem.FirstName, new { @class = "form-control input-sm" })</td>
-                    <td>@Html.TextBoxFor(item => modelItem.LastName, new { @class = "form-control input-sm" })</td>
-                    <td>@Html.TextBoxFor(item => modelItem.DOB, new { @class = "form-control input-sm", @type = "date" })</td>
-                    <td>@Html.TextBoxFor(item => modelItem.ZipCode, new { @class = "form-control input-sm" })</td>
+                    <td>@(i + 1) @Html.HiddenFor(m => m[i].Id)</td>
+                    <td>@Html.TextBoxFor(m => m[i].FirstName, new { @class = "form-control input-sm" })</td>
+                    <td>@Html.TextBoxFor(m => m[i].LastName, new { @class = "form-control input-sm" })</td>
+                    <td>@Html.TextBoxFor(m => m[i].DOB, new { @class = "form-control input-sm", @type = "date" })</td>
+                    <td>@Html.TextBoxFor(m => m[i].ZipCode, new { @class = "form-control input-sm" })</td>
                 </tr>
             }
         </tbody>
