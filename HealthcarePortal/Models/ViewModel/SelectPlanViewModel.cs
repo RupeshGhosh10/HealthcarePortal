@@ -8,7 +8,8 @@ namespace HealthcarePortal.Models.ViewModel
 {
     public class SelectPlanViewModel
     {
-        public Plan Plan { get; set; }
+        [Required(ErrorMessage = "Select a plan")]
+        public int PlanId { get; set; }
 
         public IEnumerable<Plan> Plans { get; set; }
     }

@@ -30,8 +30,9 @@ namespace HealthcarePortal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddEmployee(ProposalViewModel viewModel)
         {
-            int noOfEmployee = viewModel.Proposal.NumberOfEmployee;
             TempData["Proposal"] = viewModel.Proposal;
+
+            int noOfEmployee = viewModel.Proposal.NumberOfEmployee;
             var employees = new List<Employee>(Enumerable.Repeat(new Employee(), noOfEmployee));
 
             return View(employees);
@@ -57,9 +58,8 @@ namespace HealthcarePortal.Controllers
         {
             var proposal = TempData["Proposal"] as Proposal;
             var employees = TempData["Employees"] as IEnumerable<Employee>;
-            int planId = viewModel.Plan.Id;
-
-            proposal.PlanId = planId;
+            
+            proposal.PlanId = viewModel.PlanId;
             proposal.Employees = employees as ICollection<Employee>;
 
             _db.Proposals.Add(proposal);

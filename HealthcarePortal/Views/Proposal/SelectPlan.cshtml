@@ -12,15 +12,15 @@
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <div class="form-group">
-            @Html.LabelFor(model => model.Plan, "Plan", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PlanId, "Plan", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Plan.Id, new SelectList(Model.Plans, "Id", "PlanName"), "select a plan", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Plan.Id, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.PlanId, new SelectList(Model.Plans, "Id", "PlanName"), "select a plan", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PlanId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Next" class="btn btn-primary" />
+                <input type="submit" value="Save Proposal" class="btn btn-primary" />
             </div>
         </div>
     </div>
