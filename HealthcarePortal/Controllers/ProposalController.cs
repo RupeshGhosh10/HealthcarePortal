@@ -11,11 +11,11 @@ using System.Web.Security;
 
 namespace HealthcarePortal.Controllers
 {
-    [Authorize(Roles = "Sales")]
     public class ProposalController : Controller
     {
         private readonly HealthcarePortalContext _db = new HealthcarePortalContext();
 
+        [Authorize(Roles = "Sales")]
         public ActionResult Create()
         {
             var viewModel = new ProposalViewModel
@@ -26,6 +26,7 @@ namespace HealthcarePortal.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Sales")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddEmployee(ProposalViewModel viewModel)
@@ -38,6 +39,7 @@ namespace HealthcarePortal.Controllers
             return View(employees);
         }
 
+        [Authorize(Roles = "Sales")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SelectPlan(IEnumerable<Employee> employees)
@@ -52,6 +54,7 @@ namespace HealthcarePortal.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Sales")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SaveProposal(SelectPlanViewModel viewModel)
@@ -73,6 +76,7 @@ namespace HealthcarePortal.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize(Roles = "Sales")]
         public ActionResult ShowProposals()
         {
             var proposalList = _db.Proposals.Include(x => x.AdminUser).Include(x => x.Plan).ToList();
@@ -80,12 +84,35 @@ namespace HealthcarePortal.Controllers
             return View(proposalList);
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult ShowProposalAdmin()
+        {
+            var adminEmail = User.Identity.Name;
+            var proposalList = _db.Proposals.Include(x => x.AdminUser).Include(x => x.Plan).Where(x => x.AdminUser.Email == adminEmail).ToList();
+
+            return View("ShowProposals", proposalList);
+        }
+
+        [Authorize]
         public ActionResult EmployeeList(int id)
         {
             var proposal = _db.Proposals.Include(x => x.Employees).FirstOrDefault(x => x.Id == id);
             if (proposal == null) return View("Error");
 
             return PartialView("_EmployeeList", proposal.Employees);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult ApproveProposal(int id)
+        {
+            var proposal = _db.Proposals.Include(x => x.Employees).FirstOrDefault(x => x.Id == id);
+            if (proposal == null) return View("Error");
+
+            proposal.IsApproved = true;
+            _db.SaveChanges();
+
+            return Json("", JsonRequestBehavior.DenyGet);
         }
     }
 }

@@ -26,17 +26,24 @@
                 @Html.DisplayNameFor(model => model.Plan.PlanName)
             </th>
             <th>
-                Approval Name
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.IsApproved)
             </th>
+            @if (Roles.IsUserInRole("Sales"))
+            {
+                <th>
+                    Approval Name
+                </th>
+            }
+            else
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="proposal-row">
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyName)
                 </td>
@@ -52,12 +59,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Plan.PlanName)
                 </td>
-                <td>
-                    @item.AdminUser.FirstName @item.AdminUser.LastName
+                <td class="is-approved">
+                    @(item.IsApproved ? "Yes" : "No")
                 </td>
-                <td>
-                    @(item.IsApproved ? "Yes" : "No") 
-                </td>
+                @if (Roles.IsUserInRole("Sales"))
+                {
+                    <td>
+                        @item.AdminUser.FirstName @item.AdminUser.LastName
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @if (item.IsApproved)
+                        {
+                            <a class="btn btn-sm btn-success disabled">Approve</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-sm btn-success approve-btn" href="" data-url=@Url.Action("ApproveProposal", "Proposal", new { @id = item.Id })>Approve</a>
+                        }
+                    </td>
+                }
             </tr>
         }
     </tbody>
@@ -94,8 +117,23 @@
                             keyboard: false
                         });
                     }
-                })
+                });
+            });
+            $('.approve-btn').on('click', function (e) {
+                e.preventDefault();
+                var url = $(this).data('url');
+                var btn = $(this);
+                var row = $(this).parents('.proposal-row:first')[0];
+                var isApproved = $(row).children('.is-approved')[0];
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    success: function (data) {
+                        $(btn).addClass('disabled');
+                        $(isApproved).html(' Yes ');
+                    }
+                });
             });
         });
-    </script>    
+    </script>
 }
