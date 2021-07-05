@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.ProposalEffectiveDate)
             </th>
             <th>
-                No of Employee
+                @Html.DisplayNameFor(model => model.NumberOfEmployee)
             </th>
             <th>
                 Employee List
@@ -28,9 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.IsApproved)
             </th>
-            <th>
-                Approval Name
-            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -44,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.ProposalEffectiveDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NumberOfEmployee)
+                    No of Employee
                 </td>
                 <td>
                     <a href="" class="employee-list" data-url=@Url.Action("EmployeeList", "Proposal", new { @id = item.Id })>Employee List</a>
@@ -56,8 +54,14 @@
                     @(item.IsApproved ? "Yes" : "No")
                 </td>
                 <td>
-                    @item.AdminUser.FirstName @item.AdminUser.LastName
-
+                    @if (item.IsApproved)
+                    {
+                    <a class="btn btn-sm btn-success disabled">Approve</a>
+                    }
+                    else
+                    {
+                    <a class="btn btn-sm btn-success approve-btn" href="" data-url=@Url.Action("ApproveProposal", "Proposal", new { @id = item.Id })>Approve</a>
+                    }
                 </td>
             </tr>
         }
@@ -94,6 +98,21 @@
                             backdrop: 'static',
                             keyboard: false
                         });
+                    }
+                });
+            });
+            $('.approve-btn').on('click', function (e) {
+                e.preventDefault();
+                var url = $(this).data('url');
+                var btn = $(this);
+                var row = $(this).parents('.proposal-row:first')[0];
+                var isApproved = $(row).children('.is-approved')[0];
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    success: function (data) {
+                        $(btn).addClass('disabled');
+                        $(isApproved).html(' Yes ');
                     }
                 });
             });

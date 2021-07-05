@@ -238,6 +238,7 @@
     <Content Include="Views\Proposal\SelectPlan.cshtml" />
     <Content Include="Views\Proposal\ShowProposals.cshtml" />
     <Content Include="Views\Proposal\_EmployeeList.cshtml" />
+    <Content Include="Views\Proposal\ShowProposalAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

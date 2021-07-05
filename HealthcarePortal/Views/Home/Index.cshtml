@@ -8,33 +8,33 @@
     <div class="row main-link-container">
         @if (User.Identity.IsAuthenticated)
         {
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h3>@Html.ActionLink("Update Profile", "Update", "Account")</h3>
             </div>
             if (Roles.IsUserInRole("Admin"))
             {
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h3>@Html.ActionLink("Sale Users List", "UserList", "Account")</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h3>@Html.ActionLink("Add New Plan", "Create", "Plan")</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h3>@Html.ActionLink("See Plans", "Index", "Plan")</h3>
                 </div>
-                <div class="col-md-6">
-                    <h3>@Html.ActionLink("See Proposals", "ShowProposalAdmin", "Proposal")</h3>
+                <div class="col-md-4">
+                    <h3>@Html.ActionLink("Approve Proposals", "ShowProposalAdmin", "Proposal")</h3>
                 </div>
             }
             else
             {
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h3>@Html.ActionLink("Create Proposal", "Create", "Proposal")</h3>
                 </div>
-                <div class="col-md-6">
-                    <h3>@Html.ActionLink("See Proposals", "ShowProposals", "Proposal")</h3>
-                </div>
             }
+            <div class="col-md-4">
+                <h3>@Html.ActionLink("See All Proposals", "ShowProposals", "Proposal")</h3>
+            </div>
         }
         else
         {

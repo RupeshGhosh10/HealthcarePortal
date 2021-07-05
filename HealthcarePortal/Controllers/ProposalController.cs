@@ -76,7 +76,7 @@ namespace HealthcarePortal.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [Authorize(Roles = "Sales")]
+        [Authorize]
         public ActionResult ShowProposals()
         {
             var proposalList = _db.Proposals.Include(x => x.AdminUser).Include(x => x.Plan).ToList();
@@ -90,7 +90,7 @@ namespace HealthcarePortal.Controllers
             var adminEmail = User.Identity.Name;
             var proposalList = _db.Proposals.Include(x => x.AdminUser).Include(x => x.Plan).Where(x => x.AdminUser.Email == adminEmail).ToList();
 
-            return View("ShowProposals", proposalList);
+            return View(proposalList);
         }
 
         [Authorize]
