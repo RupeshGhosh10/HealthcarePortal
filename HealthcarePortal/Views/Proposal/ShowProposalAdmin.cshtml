@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.NumberOfEmployee)
             </th>
             <th>
-                Employee List
+                No of Employee
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Plan.PlanName)
@@ -42,7 +42,7 @@
                     @Html.DisplayFor(modelItem => item.ProposalEffectiveDate)
                 </td>
                 <td>
-                    No of Employee
+                    @Html.DisplayFor(modelItem => item.NumberOfEmployee)
                 </td>
                 <td>
                     <a href="" class="employee-list" data-url=@Url.Action("EmployeeList", "Proposal", new { @id = item.Id })>Employee List</a>
